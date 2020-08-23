@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Expense Tracker</h1>
+    <div id="expenseForm">
+        <div>
+            <label>Date:</label>
+            <input type="date" id="expenseDate">
+            <label>Location:</label>
+            <input type="text" id="expenseLocation">
+        </div>
+        <div>
+            <label>Expense:</label>
+            <input type="text" id="expenseDescription">
+            <label>Cost:</label>
+            <input type="number" id="expenseCost">
+            <input type="button" value="Add" id="addExpense">
+        </div>
+    </div>
+    <div id="expenses">
+        <h1>Expenses</h1>
+        <table id="expenseTable">
+            <tr id="tableHeader">
+                <th>Date</th>
+                <th>Location</th>
+                <th>Expense</th>
+                <th>Cost</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+<script src="/index.js"></script>
+
+</html>
