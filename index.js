@@ -1,46 +1,39 @@
-document.getElementById("addExpense").addEventListener("click", createExpense);
-document.getElementById("expenses").style.visibility = "hidden";
-
 let expenseForm = [];
+let expenseList = [];
 let emptyFlag = true;
 let costValid = false;
+
+document.getElementById("addExpense").addEventListener("click", createExpense);
+
+if (window.localStorage.getItem('expenses')) {
+	document.getElementById("expenses").style.visibility = "visible";
+	repopulateExpenses();
+}
+
+function repopulateExpenses() {
+	let storageList = (JSON.parse(window.localStorage.getItem("expenses")));
+	window.localStorage.clear();
+	for (let i = 0; i < storageList.length; i++) {
+		insertExpenseRow(storageList[i].rowID,
+			storageList[i].date,
+			storageList[i].location,
+			storageList[i].description,
+			storageList[i].cost);
+	}
+}
 
 function createExpense() {
 	if (validateForm()) {
 		document.getElementById("expenses").style.visibility = "visible";
-		insertExpenseRow();
+		let rowID = Math.floor(Math.random() * 100);
+		insertExpenseRow(rowID,
+			expenseForm[0],
+			expenseForm[1],
+			expenseForm[2],
+			expenseForm[3]);
 	} else {
 		clearExpense();
 	}
-}
-
-function insertExpenseRow() {
-	let deleteRandom = Math.floor(Math.random() * 100);
-	let expenseTable = document.getElementById("expenseTable");
-	let expenseRow = expenseTable.insertRow();
-
-	let date = expenseRow.insertCell(0);
-	let location = expenseRow.insertCell(1);
-	let description = expenseRow.insertCell(2);
-	let cost = expenseRow.insertCell(3);
-	let deleteButton = expenseRow.insertCell(4);
-
-	date.innerHTML = expenseForm[0];
-	location.innerHTML = expenseForm[1];
-	description.innerHTML = expenseForm[2];
-	cost.innerHTML = expenseForm[3];
-
-	deleteButton.innerHTML =
-		`<input type="button" id="` + deleteRandom + `" value="X">`;
-	document.getElementById(deleteRandom).addEventListener("click", function() {
-		deleteExpense(deleteRandom);
-	});
-
-	clearExpense();
-}
-
-function deleteExpense(deleteID) {
-	document.getElementById(deleteID).parentElement.parentElement.remove();
 }
 
 function validateForm() {
@@ -51,7 +44,7 @@ function validateForm() {
 		document.getElementById("expenseDescription").value,
 		cost
 	);
-	console.log('validating');
+
 	if (!isEmpty(expenseForm) && costCheck(cost)) {
 		emptyFlag = false;
 		return true;
@@ -59,6 +52,48 @@ function validateForm() {
 		emptyFlag = true;
 		return false;
 	}
+}
+
+function insertExpenseRow(rowID, date, location, description, cost) {
+	let expenseTable = document.getElementById("expenseTable");
+	let expenseRow = expenseTable.insertRow();
+	expenseRow.id += rowID;
+
+	let cellDate = expenseRow.insertCell(0);
+	let cellLocation = expenseRow.insertCell(1);
+	let cellDescription = expenseRow.insertCell(2);
+	let cellCost = expenseRow.insertCell(3);
+	let cellDeleteButton = expenseRow.insertCell(4);
+
+	cellDate.innerHTML = date;
+	cellDate.className += 'cellDate';
+	cellLocation.innerHTML = location;
+	cellLocation.className += 'cellLoc';
+	cellDescription.innerHTML = description;
+	cellDescription.className += 'cellDesc';
+	cellCost.innerHTML = cost;
+	cellCost.className += 'cellCost';
+
+	cellDeleteButton.innerHTML =
+		`<button class="delButton">X</button>`;
+
+	expenseRow.addEventListener("click", e => {
+		if (e.target.type === 'submit') {
+			deleteExpense(expenseRow);
+		}
+	});
+
+	expenseList.push({
+		rowID: rowID,
+		date: date,
+		location: location,
+		description: description,
+		cost: cost
+	});
+
+	window.localStorage.setItem('expenses', JSON.stringify(expenseList));
+
+	clearExpense();
 }
 
 function costCheck(cost) {
@@ -91,5 +126,23 @@ function clearExpense() {
 		document.getElementById("expenseCost").value = "";
 	} else {
 		expenseForm = [];
+	}
+}
+
+function deleteExpense(expenseRow) {
+	expenseRow.remove();
+
+	let deleteIndex = expenseList.indexOf(expenseList.find(row => row.rowID === parseInt(expenseRow.id)));
+	expenseList.splice(deleteIndex, 1);
+
+	window.localStorage.clear();
+	window.localStorage.setItem('expenses', JSON.stringify(expenseList));
+
+	if (!expenseList.length) {
+		window.localStorage.clear();
+		document.getElementById("expenses").style.visibility = "hidden";
+	} else {
+		window.localStorage.clear();
+		window.localStorage.setItem('expenses', JSON.stringify(expenseList));
 	}
 }

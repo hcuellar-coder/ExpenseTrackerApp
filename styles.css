@@ -1,0 +1,103 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    font-family: 'Lucida Sans';
+    font-size: 48px;
+}
+
+label {
+    font-family: 'Lucida Sans';
+    font-size: 18px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table, td, th {
+    border: 1px solid #ddd;
+}
+
+tr {
+    font-family: 'Lucida Sans';
+    font-size: 18px;    
+}
+
+.cellDate {
+    width: 125px;
+}
+.cellLoc {
+    width: 150px;
+}
+.cellDesc {
+    width: 350px
+}
+.cellCost {
+    width: 100px;
+}
+.cellDel {
+    width: 75px;
+}
+
+.delButton {
+    font-family: 'Lucida Sans';
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    background-color: transparent;
+    border: 0;
+    width: 60px;
+}
+
+.expenseInputs{
+    font-family: 'Lucida Sans';
+    font-size: 18px;
+}
+
+#expenseForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#formRow1 {
+    margin-bottom: 5px;
+}
+
+#expenseDate {
+    min-width: 100px;
+}
+
+#expenseLocation {
+    min-width: 250px;
+}
+
+#expenseDescription {
+    min-width: 285px;
+}
+
+#expenseCost {
+    max-width: 100px;
+}
+
+#addExpense {
+    font-family: 'Lucida Sans';
+    font-size: 18px;
+    background-color: transparent;
+    border: 2px solid;
+    width: 60px;
+}
+
+#expenses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+}
+
+#expenseTable {
+    width: 100%;
+}

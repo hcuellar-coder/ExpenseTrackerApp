@@ -9,23 +9,23 @@
 </head>
 
 <body>
-    <h1>Expense Tracker</h1>
+    <h1>Expense Input</h1>
     <div id="expenseForm">
-        <div>
+        <div id="formRow1">
             <label>Date:</label>
-            <input type="date" id="expenseDate">
+            <input type="date" class="expenseInputs" id="expenseDate">
             <label>Location:</label>
-            <input type="text" id="expenseLocation">
+            <input type="text" class="expenseInputs" id="expenseLocation" placeholder="Where'd ya spend?">
         </div>
-        <div>
+        <div id="formRow2">
             <label>Expense:</label>
-            <input type="text" id="expenseDescription">
+            <input type="text" class="expenseInputs" id="expenseDescription" placeholder="What'd ya buy?">
             <label>Cost:</label>
-            <input type="number" id="expenseCost" min="1">
-            <input type="button" value="Add" id="addExpense">
+            <input type="number" class="expenseInputs" id="expenseCost" min="1" placeholder="$$$.$$">
+            <button id="addExpense">Add</button>
         </div>
     </div>
-    <div id="expenses">
+    <div id="expenses" style="visibility: hidden;">
         <h1>Expenses</h1>
         <table id="expenseTable">
             <tr id="tableHeader">
