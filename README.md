@@ -3,7 +3,7 @@ A clean and simple app for tracking expenses, written entirely in JavaScript, HT
 
 Code Located [Here](https://github.com/hcuellar-coder/ExpenseTrackerApp)
 
-Run Code [Here](https://codepen.io/hcuellar-coder/pen/eYZvNby)
+Run Code [Here](https://hcuellar-coder.github.io/ExpenseTrackerApp/)
 
 ![ExpenseTrackerApp](./images/expenseTrackerApp.PNG)
 
