@@ -12,4 +12,4 @@ The Expense Tracking App is a simple and easy way of tracking your daily expense
 I enjoyed the process and I quite enjoy creating applications that are clean and simple.
 
 ## Author
-Heriberto Cuellar – Full Stack Software Developer - [LinkedIn](linkedin.com/in/heriberto-c-5aa11952)
+Heriberto Cuellar – Full Stack Software Developer - [LinkedIn](https://www.linkedin.com/in/heriberto-c-5aa11952)
