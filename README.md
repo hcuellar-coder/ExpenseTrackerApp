@@ -1,8 +1,6 @@
 # Expense Tracking App
 A clean and simple app for tracking expenses, written entirely in JavaScript, HTML and CSS
 
-Code Located [Here](https://github.com/hcuellar-coder/ExpenseTrackerApp)
-
 Run Code [Here](https://hcuellar-coder.github.io/ExpenseTrackerApp/)
 
 ![ExpenseTrackerApp](./images/expenseTrackerApp.PNG)
