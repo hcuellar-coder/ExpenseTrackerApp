@@ -27,23 +27,23 @@ tr {
     font-size: 18px;    
 }
 
-.cellDate {
+.cell-date {
     width: 125px;
 }
-.cellLoc {
+.cell-loc {
     width: 150px;
 }
-.cellDesc {
+.cell-desc {
     width: 350px
 }
-.cellCost {
+.cell-cost {
     width: 100px;
 }
-.cellDel {
+.cell-del {
     width: 75px;
 }
 
-.delButton {
+.del-button {
     font-family: 'Lucida Sans';
     font-size: 18px;
     font-weight: bold;
@@ -53,37 +53,37 @@ tr {
     width: 60px;
 }
 
-.expenseInputs{
+.expense-inputs{
     font-family: 'Lucida Sans';
     font-size: 18px;
 }
 
-#expenseForm {
+#expense-form {
     display: flex;
     flex-direction: column;
 }
 
-#formRow1 {
+#form-row1 {
     margin-bottom: 5px;
 }
 
-#expenseDate {
+#expense-date {
     min-width: 100px;
 }
 
-#expenseLocation {
+#expense-location {
     min-width: 250px;
 }
 
-#expenseDescription {
+#expense-description {
     min-width: 285px;
 }
 
-#expenseCost {
+#expense-cost {
     max-width: 100px;
 }
 
-#addExpense {
+#add-expense {
     font-family: 'Lucida Sans';
     font-size: 18px;
     background-color: transparent;
@@ -98,6 +98,6 @@ tr {
     width: 800px;
 }
 
-#expenseTable {
+#expense-table {
     width: 100%;
 }

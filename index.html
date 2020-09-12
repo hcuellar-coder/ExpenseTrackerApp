@@ -10,25 +10,25 @@
 
 <body>
     <h1>Expense Input</h1>
-    <div id="expenseForm">
-        <div id="formRow1">
+    <div id="expense-form">
+        <div id="form-row1">
             <label>Date:</label>
-            <input type="date" class="expenseInputs" id="expenseDate">
+            <input id="expense-date" class="expense-inputs" type="date">
             <label>Location:</label>
-            <input type="text" class="expenseInputs" id="expenseLocation" placeholder="Where'd ya spend?">
+            <input id="expense-location" class="expense-inputs" type="text" placeholder="Where'd ya spend?">
         </div>
-        <div id="formRow2">
+        <div id="form-row2">
             <label>Expense:</label>
-            <input type="text" class="expenseInputs" id="expenseDescription" placeholder="What'd ya buy?">
+            <input id="expense-description" class="expense-inputs" type="text" placeholder="What'd ya buy?">
             <label>Cost:</label>
-            <input type="number" class="expenseInputs" id="expenseCost" min="1" placeholder="$$$.$$">
-            <button id="addExpense">Add</button>
+            <input id="expense-cost" class="expense-inputs" type="number" min="1" placeholder="$$$.$$">
+            <button id="add-expense">Add</button>
         </div>
     </div>
     <div id="expenses" style="visibility: hidden;">
         <h1>Expenses</h1>
-        <table id="expenseTable">
-            <tr id="tableHeader">
+        <table id="expense-table">
+            <tr id="table-header">
                 <th>Date</th>
                 <th>Location</th>
                 <th>Expense</th>

@@ -1,18 +1,16 @@
 let expenseForm = [];
 let expenseList = [];
-let emptyFlag = true;
-let costValid = false;
 
-document.getElementById("addExpense").addEventListener("click", createExpense);
+document.getElementById("add-expense").addEventListener("click", createExpense);
 
-if (window.localStorage.getItem('expenses')) {
+if (localStorage.getItem('expenses')) {
 	document.getElementById("expenses").style.visibility = "visible";
 	repopulateExpenses();
 }
 
 function repopulateExpenses() {
-	let storageList = (JSON.parse(window.localStorage.getItem("expenses")));
-	window.localStorage.clear();
+	let storageList = (JSON.parse(localStorage.getItem("expenses")));
+	localStorage.clear();
 	for (let i = 0; i < storageList.length; i++) {
 		insertExpenseRow(storageList[i].rowID,
 			storageList[i].date,
@@ -23,39 +21,27 @@ function repopulateExpenses() {
 }
 
 function createExpense() {
-	if (validateForm()) {
+	const cost = document.getElementById('expense-cost').value;
+	const date = document.getElementById("expense-date").value;
+	const location = document.getElementById("expense-location").value;
+	const description = document.getElementById("expense-description").value;
+
+	expenseForm.push(date, location, description, cost);
+
+	if (cost === '' || date === '' || location === '' || description === '') {
+		alert("Please complete the form before submitting");
+	} else if (cost < 0) {
+		alert("Cost must be greater than 0!");
+	} else {
 		document.getElementById("expenses").style.visibility = "visible";
 		let rowID = Math.floor(Math.random() * 100);
-		insertExpenseRow(rowID,
-			expenseForm[0],
-			expenseForm[1],
-			expenseForm[2],
-			expenseForm[3]);
-	} else {
+		insertExpenseRow(rowID, ...expenseForm);
 		clearExpense();
 	}
 }
 
-function validateForm() {
-	cost = document.getElementById("expenseCost").value
-	expenseForm.push(
-		document.getElementById("expenseDate").value,
-		document.getElementById("expenseLocation").value,
-		document.getElementById("expenseDescription").value,
-		cost
-	);
-
-	if (!isEmpty(expenseForm) && costCheck(cost)) {
-		emptyFlag = false;
-		return true;
-	} else {
-		emptyFlag = true;
-		return false;
-	}
-}
-
 function insertExpenseRow(rowID, date, location, description, cost) {
-	let expenseTable = document.getElementById("expenseTable");
+	let expenseTable = document.getElementById("expense-table");
 	let expenseRow = expenseTable.insertRow();
 	expenseRow.id += rowID;
 
@@ -66,67 +52,29 @@ function insertExpenseRow(rowID, date, location, description, cost) {
 	let cellDeleteButton = expenseRow.insertCell(4);
 
 	cellDate.innerHTML = date;
-	cellDate.className += 'cellDate';
+	cellDate.className += 'cell-date';
 	cellLocation.innerHTML = location;
-	cellLocation.className += 'cellLoc';
+	cellLocation.className += 'cell-loc';
 	cellDescription.innerHTML = description;
-	cellDescription.className += 'cellDesc';
+	cellDescription.className += 'cell-desc';
 	cellCost.innerHTML = cost;
-	cellCost.className += 'cellCost';
+	cellCost.className += 'cell-cost';
 
 	cellDeleteButton.innerHTML =
-		`<button class="delButton">X</button>`;
+		`<button class="del-button">X</button>`;
 
-	expenseRow.addEventListener("click", e => {
-		if (e.target.type === 'submit') {
-			deleteExpense(expenseRow);
-		}
-	});
+	expenseRow.addEventListener("click", () => deleteExpense(expenseRow));
 
-	expenseList.push({
-		rowID: rowID,
-		date: date,
-		location: location,
-		description: description,
-		cost: cost
-	});
+	expenseList.push({ rowID, date, location, description, cost });
 
-	window.localStorage.setItem('expenses', JSON.stringify(expenseList));
+	localStorage.setItem('expenses', JSON.stringify(expenseList));
 
 	clearExpense();
 }
 
-function costCheck(cost) {
-	if (cost > 0) {
-		costValid = true;
-		return true;
-	} else {
-		alert("Cost must be greater than 0!");
-		costValid = false;
-		return false;
-	}
-}
-
-function isEmpty(input) {
-	for (i = 0; i < input.length; i++) {
-		if (!input[i]) {
-			alert("Please complete the form before submitting");
-			return true;
-		}
-	}
-	return false;
-}
-
 function clearExpense() {
-	if (!emptyFlag && costValid) {
-		expenseForm = [];
-		document.getElementById("expenseDate").value = "";
-		document.getElementById("expenseLocation").value = "";
-		document.getElementById("expenseDescription").value = "";
-		document.getElementById("expenseCost").value = "";
-	} else {
-		expenseForm = [];
-	}
+	const inputs = document.querySelectorAll('input');
+	inputs.forEach(input => input.value = "");
 }
 
 function deleteExpense(expenseRow) {
@@ -135,14 +83,14 @@ function deleteExpense(expenseRow) {
 	let deleteIndex = expenseList.indexOf(expenseList.find(row => row.rowID === parseInt(expenseRow.id)));
 	expenseList.splice(deleteIndex, 1);
 
-	window.localStorage.clear();
-	window.localStorage.setItem('expenses', JSON.stringify(expenseList));
+	localStorage.clear();
+	localStorage.setItem('expenses', JSON.stringify(expenseList));
 
 	if (!expenseList.length) {
-		window.localStorage.clear();
+		localStorage.clear();
 		document.getElementById("expenses").style.visibility = "hidden";
 	} else {
-		window.localStorage.clear();
-		window.localStorage.setItem('expenses', JSON.stringify(expenseList));
+		localStorage.clear();
+		localStorage.setItem('expenses', JSON.stringify(expenseList));
 	}
 }
