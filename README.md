@@ -3,7 +3,7 @@ A clean and simple app for tracking expenses, written entirely in JavaScript, HT
 
 Code Located [Here](https://github.com/hcuellar-coder/ExpenseTrackerApp)
 
-Run Code [Here](https://codepen.io/hcuellar-coder/pen/eYZvNby)
+Run Code [Here](https://hcuellar-coder.github.io/ExpenseTrackerApp/)
 
 ![ExpenseTrackerApp](./images/expenseTrackerApp.PNG)
 
@@ -12,4 +12,4 @@ The Expense Tracking App is a simple and easy way of tracking your daily expense
 I enjoyed the process and I quite enjoy creating applications that are clean and simple.
 
 ## Author
-Heriberto Cuellar – Full Stack Software Developer - [LinkedIn](linkedin.com/in/heriberto-c-5aa11952)
+Heriberto Cuellar – Full Stack Software Developer - [LinkedIn](https://www.linkedin.com/in/heriberto-c-5aa11952)
